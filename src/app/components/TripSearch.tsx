@@ -2,11 +2,12 @@
 
 import DatePicker from "@/components/DatePicker";
 import Input from "@/components/Input";
-import CurrencyInput from "react-currency-input-field";
+import CurrencyInput from "@/components/CurrencyInput";
+import Button from '@/components/Button';
 
 export function TripSearch() {
   return (
-    <div className="container mx-auto p-5">
+    <div className="container mx-auto p-5 bg-search-background bg-cover bg-center bg-no-repeat">
     <h1 className="font-semibold text-2xl text-secondary text-center ">Encontre sua proxima <span className="text-primary">viagem</span></h1>
     <div className="flex flex-col gap-4 mt-5">
       <Input placeholder="Onde você quer ir?" />
@@ -14,8 +15,9 @@ export function TripSearch() {
       <div className="flex gap-4">
         <DatePicker placeholderText="Data de ida" onChange={() => {}} className="w-full"/>
         <CurrencyInput placeholder="Orçamento"/>
-
       </div>
+
+      <Button>Buscar</Button>
     </div>
     </div>
   )

@@ -28,7 +28,7 @@ export const Header = () => {
       )}
 
       {status === "authenticated" && data.user &&(
-        <div className="flex items-center gap-5 border-graySecondary border border-solid rounded-lg p-2 px-3 relative">
+        <div className="flex items-center gap-5 border-gray-300 border border-solid rounded-full p-2 px-3 relative">
             <AiOutlineMenu size={24} onClick={handleMenuClick} className="cursor-pointer"/>
 
             <Image height={40} width={40} src={data.user.image!} alt={data.user.name!} className="rounded-full shadow-md"/>
