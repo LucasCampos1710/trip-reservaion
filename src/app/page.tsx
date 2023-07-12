@@ -1,9 +1,10 @@
-"use client"
+"use client" 
+import { TripSearch } from './components/TripSearch/index';
 
 export default function Home() {
   return (
     <div>
-      <h1>Hello world</h1>
+      <TripSearch />
     </div>
   )
 }
