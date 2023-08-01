@@ -3,11 +3,12 @@
 import Button from "@/components/Button";
 import DatePicker from "@/components/DatePicker";
 import Input from "@/components/Input";
-import { Trip } from '@prisma/client';
 import { Controller, useForm } from "react-hook-form";
 
 interface TripReservationProps {
-  trip: Trip
+  tripStartDate: Date
+  tripEndDate: Date
+  maxGuest: number
 }
 
 interface TripReservationForm {
@@ -16,12 +17,14 @@ interface TripReservationForm {
   endDate: Date | null
 }
 
-export default function TripReservation({trip}: TripReservationProps) {
-  const { register, handleSubmit, formState: { errors }, control } = useForm<TripReservationForm>()
+export default function TripReservation({maxGuest, tripStartDate, tripEndDate}: TripReservationProps) {
+  const { register, handleSubmit, formState: { errors }, control, watch } = useForm<TripReservationForm>()
 
   const onSubmit = (data: any) => {
     console.log({data})
   }
+
+  const startDate = watch("startDate")
   
   return (
       <div className="flex flex-col px-5 ">
@@ -43,6 +46,7 @@ export default function TripReservation({trip}: TripReservationProps) {
              selected={field.value} 
              placeholderText="Data de Início" 
               className="w-full" 
+              minDate={tripStartDate}
               />
               )}
           />
@@ -64,6 +68,8 @@ export default function TripReservation({trip}: TripReservationProps) {
               selected={field.value}
               placeholderText="Data Final"
               className="w-full"
+              maxDate={tripEndDate}
+              minDate={startDate ?? tripStartDate}
             />
           )}
         />
@@ -76,7 +82,7 @@ export default function TripReservation({trip}: TripReservationProps) {
               message: "Número de hóspedes é obrigatório!"
             },
           })}
-        placeholder={`Número de Hóspedes (max: ${trip.maxGuests})`} className="mt-4"
+        placeholder={`Número de Hóspedes (max: ${maxGuest})`} className="mt-4"
         error={!!errors?.guests}
         errorMessage={errors?.guests?.message}
         />
